@@ -2,7 +2,7 @@
   "info": {
     "name": "GoShule API",
     "_postman_id": "c6e6a5a2-2f73-4a8d-9c4b-8b7a12345678",
-    "description": "Postman collection for GoShule school transport system backend",
+    "description": "Postman collection for GoShule school transport system backend with manifest endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -103,7 +103,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Student A\",\n  \"grade\": \"Grade 3\",\n  \"pickupPoint\": \"Westlands\",\n  \"busId\": 1,\n  \"parentId\": 1\n}"
+          "raw": "{\n  \"name\": \"Student A\",\n  \"grade\": \"Grade 3\",\n  \"pickupPoint\": \"Westlands\",\n  \"busId\": {{busId}},\n  \"parentId\": {{parentId}}\n}"
         },
         "url": {
           "raw": "https://track-production-c6eb.up.railway.app/api/students",
@@ -119,10 +119,10 @@
         "method": "GET",
         "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
         "url": {
-          "raw": "https://track-production-c6eb.up.railway.app/api/parents/1/students",
+          "raw": "https://track-production-c6eb.up.railway.app/api/parents/{{parentId}}/students",
           "protocol": "https",
           "host": ["track-production-c6eb", "up", "railway", "app"],
-          "path": ["api", "parents", "1", "students"]
+          "path": ["api", "parents", "{{parentId}}", "students"]
         }
       }
     },
@@ -136,7 +136,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"studentId\": 1,\n  \"busId\": 1,\n  \"assistantId\": 3,\n  \"latitude\": -1.2921,\n  \"longitude\": 36.8219\n}"
+          "raw": "{\n  \"studentId\": {{studentId}},\n  \"busId\": {{busId}},\n  \"assistantId\": {{assistantId}},\n  \"latitude\": {{latitude}},\n  \"longitude\": {{longitude}}\n}"
         },
         "url": {
           "raw": "https://track-production-c6eb.up.railway.app/api/manifest/checkin",
@@ -156,7 +156,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"studentId\": 1,\n  \"busId\": 1,\n  \"assistantId\": 3,\n  \"latitude\": -1.2950,\n  \"longitude\": 36.8200\n}"
+          "raw": "{\n  \"studentId\": {{studentId}},\n  \"busId\": {{busId}},\n  \"assistantId\": {{assistantId}},\n  \"latitude\": {{latitude}},\n  \"longitude\": {{longitude}}\n}"
         },
         "url": {
           "raw": "https://track-production-c6eb.up.railway.app/api/manifest/checkout",
@@ -172,15 +172,21 @@
         "method": "GET",
         "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
         "url": {
-          "raw": "https://track-production-c6eb.up.railway.app/api/manifest/bus/1",
+          "raw": "https://track-production-c6eb.up.railway.app/api/manifest/bus/{{busId}}",
           "protocol": "https",
           "host": ["track-production-c6eb", "up", "railway", "app"],
-          "path": ["api", "manifest", "bus", "1"]
+          "path": ["api", "manifest", "bus", "{{busId}}"]
         }
       }
     }
   ],
   "variable": [
-    { "key": "token", "value": "" }
+    { "key": "token", "value": "" },
+    { "key": "studentId", "value": "1" },
+    { "key": "busId", "value": "1" },
+    { "key": "assistantId", "value": "3" },
+    { "key": "parentId", "value": "1" },
+    { "key": "latitude", "value": "-1.2921" },
+    { "key": "longitude", "value": "36.8219" }
   ]
 }
