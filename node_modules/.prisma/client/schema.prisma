@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// General user model for auth
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     String // admin, driver, assistant, parent
+
+  // Relations
+  busesDriven        Bus[]      @relation("DriverBus")
+  busesAssisting     Bus[]      @relation("AssistantBus")
+  assistantManifests Manifest[] @relation("AssistantManifest")
+}
+
+// Bus model
+model Bus {
+  id          Int    @id @default(autoincrement())
+  name        String
+  plateNumber String @unique
+  capacity    Int
+  route       String
+
+  driverId Int?
+  driver   User? @relation("DriverBus", fields: [driverId], references: [id])
+
+  assistantId Int?
+  assistant   User? @relation("AssistantBus", fields: [assistantId], references: [id])
+
+  students  Student[]
+  manifests Manifest[]
+}
+
+// Parent model
+model Parent {
+  id       Int       @id @default(autoincrement())
+  name     String
+  phone    String
+  email    String    @unique
+  students Student[]
+}
+
+// Student model
+model Student {
+  id        Int    @id @default(autoincrement())
+  name      String
+  grade     String
+  latitude  Float // mandatory GPS latitude
+  longitude Float // mandatory GPS longitude
+  busId     Int
+  parentId  Int
+
+  bus       Bus        @relation(fields: [busId], references: [id])
+  parent    Parent     @relation(fields: [parentId], references: [id])
+  manifests Manifest[]
+}
+
+// Manifest / check-in model
+model Manifest {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  busId       Int
+  assistantId Int? // the bus assistant at the time of check-in/out
+  status      String // CHECKED_IN, CHECKED_OUT
+  date        DateTime @default(now()) // date of check-in/out
+  latitude    Float? // optional GPS latitude for the event
+  longitude   Float? // optional GPS longitude for the event
+
+  student   Student @relation(fields: [studentId], references: [id])
+  bus       Bus     @relation(fields: [busId], references: [id])
+  assistant User?   @relation("AssistantManifest", fields: [assistantId], references: [id])
+}

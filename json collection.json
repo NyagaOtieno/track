@@ -1,0 +1,136 @@
+{
+  "info": {
+    "name": "GoShule API",
+    "_postman_id": "c6e6a5a2-2f73-4a8d-9c4b-8b7a12345678",
+    "description": "Postman collection for GoShule school transport system backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Admin One\",\n  \"email\": \"admin@goshule.com\",\n  \"password\": \"123456\",\n  \"role\": \"admin\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "register"] }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@goshule.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "login"] }
+      }
+    },
+    {
+      "name": "Bus - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Bus 1\",\n  \"plateNumber\": \"KCA123X\",\n  \"capacity\": 60,\n  \"route\": \"Nairobi West\",\n  \"driverId\": 2,\n  \"assistantId\": 3\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/buses", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "buses"] }
+      }
+    },
+    {
+      "name": "Bus - List All",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "http://localhost:5000/api/buses", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "buses"] }
+      }
+    },
+    {
+      "name": "Parent - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Parent One\",\n  \"phone\": \"+254700111222\",\n  \"email\": \"parent1@goshule.com\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/parents", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "parents"] }
+      }
+    },
+    {
+      "name": "Student - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Student A\",\n  \"grade\": \"Grade 3\",\n  \"pickupPoint\": \"Westlands\",\n  \"busId\": 1,\n  \"parentId\": 1\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/students", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "Parent - Get Students",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "http://localhost:5000/api/parents/1/students", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "parents", "1", "students"] }
+      }
+    },
+    {
+      "name": "Manifest - Checkin",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": 1,\n  \"busId\": 1,\n  \"assistantId\": 3,\n  \"latitude\": -1.2921,\n  \"longitude\": 36.8219\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/manifest/checkin", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "manifest", "checkin"] }
+      }
+    },
+    {
+      "name": "Manifest - Checkout",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": 1,\n  \"busId\": 1,\n  \"assistantId\": 3,\n  \"latitude\": -1.2950,\n  \"longitude\": 36.8200\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/manifest/checkout", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "manifest", "checkout"] }
+      }
+    },
+    {
+      "name": "Manifest - Get Bus Manifest",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "http://localhost:5000/api/manifest/bus/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "manifest", "bus", "1"] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "token", "value": "" }
+  ]
+}
