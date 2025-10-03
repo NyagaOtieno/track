@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "Student Bus Tracking API (Full Live)",
+    "_postman_id": "f1d4c6b4-2e6a-4f0e-bc3d-abcdef123456",
+    "description": "Complete Postman collection with CRUD operations for Buses, Parents/Students, and Manifests (check-in/out) using live backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://track-production-c6eb.up.railway.app",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Admin One\",\n  \"email\": \"admin@goshule.com\",\n  \"password\": \"123456\",\n  \"role\": \"admin\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api","auth","register"] }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@goshule.com\",\n  \"password\": \"123456\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api","auth","login"] }
+      }
+    },
+    {
+      "name": "Create Bus",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Bus A\",\n  \"plateNumber\": \"KAA123A\",\n  \"capacity\": 40,\n  \"route\": \"Route 1\",\n  \"driverId\": 1,\n  \"assistantId\": 2\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/buses", "host": ["{{baseUrl}}"], "path": ["api","buses"] }
+      }
+    },
+    {
+      "name": "List Buses",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "url": { "raw": "{{baseUrl}}/api/buses", "host": ["{{baseUrl}}"], "path": ["api","buses"] }
+      }
+    },
+    {
+      "name": "Update Bus",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Bus A Updated\",\n  \"plateNumber\": \"KAA123B\",\n  \"capacity\": 45,\n  \"route\": \"Route 1B\",\n  \"driverId\": 1,\n  \"assistantId\": 2\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/buses/1", "host": ["{{baseUrl}}"], "path": ["api","buses","1"] }
+      }
+    },
+    {
+      "name": "Delete Bus",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "url": { "raw": "{{baseUrl}}/api/buses/1", "host": ["{{baseUrl}}"], "path": ["api","buses","1"] }
+      }
+    },
+    {
+      "name": "Create Parent & Student",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"parentName\": \"John Doe\",\n  \"parentPhone\": \"0712345678\",\n  \"parentEmail\": \"\",\n  \"studentName\": \"Jane Doe\",\n  \"grade\": \"Grade 4\",\n  \"latitude\": -1.27231,\n  \"longitude\": 36.82767,\n  \"busId\": 1\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/parents", "host": ["{{baseUrl}}"], "path": ["api","parents"] }
+      }
+    },
+    {
+      "name": "Update Parent/Student",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"parentName\": \"John Doe Updated\",\n  \"parentPhone\": \"0712345678\",\n  \"parentEmail\": \"johndoe@example.com\",\n  \"studentName\": \"Jane Doe Updated\",\n  \"grade\": \"Grade 5\",\n  \"latitude\": -1.27235,\n  \"longitude\": 36.82770,\n  \"busId\": 1\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/parents/1", "host": ["{{baseUrl}}"], "path": ["api","parents","1"] }
+      }
+    },
+    {
+      "name": "Delete Parent/Student",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "url": { "raw": "{{baseUrl}}/api/parents/1", "host": ["{{baseUrl}}"], "path": ["api","parents","1"] }
+      }
+    },
+    {
+      "name": "Manifest Check-In",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": 1,\n  \"busId\": 1,\n  \"assistantId\": 2,\n  \"latitude\": -1.27231,\n  \"longitude\": 36.82767\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/manifests/checkin", "host": ["{{baseUrl}}"], "path": ["api","manifests","checkin"] }
+      }
+    },
+    {
+      "name": "Manifest Check-Out",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": 1,\n  \"busId\": 1,\n  \"assistantId\": 2,\n  \"latitude\": -1.27231,\n  \"longitude\": 36.82767\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/manifests/checkout", "host": ["{{baseUrl}}"], "path": ["api","manifests","checkout"] }
+      }
+    },
+    {
+      "name": "List Manifests by Bus",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "url": { "raw": "{{baseUrl}}/api/manifests/bus/1", "host": ["{{baseUrl}}"], "path": ["api","manifests","bus","1"] }
+      }
+    },
+    {
+      "name": "List Manifests by Student",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }],
+        "url": { "raw": "{{baseUrl}}/api/manifests/student/1", "host": ["{{baseUrl}}"], "path": ["api","manifests","student","1"] }
+      }
+    }
+  ]
+}
