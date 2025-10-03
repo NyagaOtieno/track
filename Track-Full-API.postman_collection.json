@@ -1,0 +1,397 @@
+{
+  "info": {
+    "name": "Track-Loc8 Full Fleet API",
+    "_postman_id": "trackloc8-full-fleet-collection",
+    "description": "Complete Track-Loc8 API collection with realistic GET, POST, PUT, DELETE for all modules. API key embedded in all endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Units",
+      "item": [
+        {
+          "name": "Get Units",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/unit.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Unit",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/unit.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"KCT123X\",\n  \"type\": \"car\",\n  \"label\": \"School Bus\",\n  \"box_id\": 28502037,\n  \"company_id\": 14594,\n  \"country_code\": \"KE\",\n  \"lat\": -1.24333,\n  \"lng\": 36.88047,\n  \"direction\": 90,\n  \"mileage\": 12000,\n  \"fuel_type\": \"diesel\",\n  \"avg_fuel_consumption\": {\"norm\": 15, \"measurement\": \"l/100km\"},\n  \"icon\": \"bus\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Unit",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/unit/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"KCT123X Updated\",\n  \"lat\": -1.25000,\n  \"lng\": 36.89000,\n  \"direction\": 120,\n  \"mileage\": 13000\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Unit",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/unit/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Drivers",
+      "item": [
+        {
+          "name": "Get Drivers",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/driver.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Driver",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/driver.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"license_number\": \"D1234567\",\n  \"phone\": \"+254700000001\",\n  \"company_id\": 14594,\n  \"assigned_units\": [771259]\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Driver",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/driver/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+254700000002\",\n  \"assigned_units\": [771259, 771260]\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Driver",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/driver/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Routes",
+      "item": [
+        {
+          "name": "Get Routes",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/route.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Route",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/route.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nairobi-Mombasa\",\n  \"start_location\": \"Nairobi\",\n  \"end_location\": \"Mombasa\",\n  \"distance_km\": 480\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Route",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/route/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Nairobi-Mombasa Route\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Route",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/route/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Get Messages",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/message.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Message",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/message.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"driver_id\": 1,\n  \"message\": \"Check vehicle status\",\n  \"unit_id\": 771259,\n  \"priority\": \"high\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Message",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/message/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Updated message content\",\n  \"priority\": \"medium\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Message",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/message/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inspections",
+      "item": [
+        {
+          "name": "Get Inspections",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/inspection.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Inspection",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/inspection.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit_id\": 771259,\n  \"inspector\": \"Inspector Name\",\n  \"status\": \"passed\",\n  \"comments\": \"Vehicle in good condition\",\n  \"inspection_date\": \"2025-09-29T12:00:00Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Inspection",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/inspection/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"failed\",\n  \"comments\": \"Minor issues found\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Inspection",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/inspection/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Devices",
+      "item": [
+        {
+          "name": "Get Devices",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/device.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Device",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/device.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit_id\": 771259,\n  \"imei\": \"123456789012345\",\n  \"type\": \"GPS\",\n  \"status\": \"active\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Device",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/device/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"GPS Tracker Updated\",\n  \"status\": \"inactive\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Device",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/device/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fuel",
+      "item": [
+        {
+          "name": "Get Fuel Records",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/fuel.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Fuel Record",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/fuel.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit_id\": 771259,\n  \"liters\": 50,\n  \"cost\": 3500,\n  \"date\": \"2025-09-29T10:00:00Z\",\n  \"fuel_station\": \"Shell Nairobi\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Fuel Record",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/fuel/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"liters\": 55,\n  \"cost\": 3700\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Fuel Record",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/fuel/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tachograph",
+      "item": [
+        {
+          "name": "Get Tachograph Records",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/tachograph.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Tachograph Record",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/tachograph.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit_id\": 771259,\n  \"driver_id\": 101,\n  \"hours\": 8,\n  \"distance_km\": 250,\n  \"date\": \"2025-09-29T08:00:00Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Tachograph Record",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/tachograph/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hours\": 9,\n  \"distance_km\": 280\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Tachograph Record",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/tachograph/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Driver Behavior",
+      "item": [
+        {
+          "name": "Get Driver Behavior",
+          "request": {
+            "method": "GET",
+            "url": "https://myfleet.track-loc8.com/api/v1/driver_behavior.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        },
+        {
+          "name": "Create Behavior Record",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/driver_behavior.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"driver_id\": 101,\n  \"unit_id\": 771259,\n  \"event\": \"harsh_braking\",\n  \"severity\": \"high\",\n  \"timestamp\": \"2025-09-29T09:00:00Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Behavior Record",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "https://myfleet.track-loc8.com/api/v1/driver_behavior/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"speeding\",\n  \"severity\": \"medium\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Behavior Record",
+          "request": {
+            "method": "DELETE",
+            "url": "https://myfleet.track-loc8.com/api/v1/driver_behavior/:id.json?key=44e824d4f70647af1bb9a314b4de7e73951c8ad6"
+          }
+        }
+      ]
+    }
+  ]
+}
